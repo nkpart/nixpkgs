@@ -278,6 +278,7 @@ let
     kza = [ pkgs.fftw.dev ];
     libamtrack = [ pkgs.gsl_1 ];
     magick = [ pkgs.imagemagick.dev ];
+    ModelMetrics = lib.optional stdenv.isDarwin pkgs.llvmPackages.openmp;
     mvabund = [ pkgs.gsl_1 ];
     mwaved = [ pkgs.fftw.dev ];
     ncdf4 = [ pkgs.netcdf ];
@@ -730,6 +731,11 @@ let
     });
 
     data_table = old.data_table.overrideDerivation (attrs: {
+      NIX_CFLAGS_COMPILE = attrs.NIX_CFLAGS_COMPILE
+        + lib.optionalString stdenv.isDarwin " -fopenmp";
+    });
+
+    ModelMetrics = old.ModelMetrics.overrideDerivation (attrs: {
       NIX_CFLAGS_COMPILE = attrs.NIX_CFLAGS_COMPILE
         + lib.optionalString stdenv.isDarwin " -fopenmp";
     });
