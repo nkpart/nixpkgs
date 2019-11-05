@@ -447,6 +447,7 @@ let
     igraph = [ pkgs.libiconv ];
     ape = [ pkgs.libiconv ];
     expm = [ pkgs.libiconv ];
+    lars = [ pkgs.libiconv ];
     mnormt = [ pkgs.libiconv ];
     pan = [ pkgs.libiconv ];
     phangorn = [ pkgs.libiconv ];
